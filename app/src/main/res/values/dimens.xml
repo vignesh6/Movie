@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="app_bar_height">400dp</dimen>
+
+    <dimen name="margin_normal">16dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_tiny">6dp</dimen>
+    <dimen name="zero_dp">0dp</dimen>
+    <dimen name="margin_text">12dp</dimen>
+    <dimen name="margin_end">12dp</dimen>
+    <dimen name="margin_start">6dp</dimen>
+    <dimen name="margin_top">6dp</dimen>
+    <dimen name="image_width">90dp</dimen>
+    <dimen name="image_height">45dp</dimen>
+
+</resources>

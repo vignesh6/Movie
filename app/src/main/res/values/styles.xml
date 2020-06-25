@@ -1,0 +1,43 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar"/>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Dark"/>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <!-- Gets rid of the search icon -->
+        <item name="searchIcon">@drawable/ic_baseline_search_24</item>
+        <!-- Gets rid of the "underline" in the text -->
+        <item name="queryBackground">@color/white</item>
+        <!-- Gets rid of the search icon when the SearchView is expanded -->
+        <item name="searchHintIcon">@null</item>
+        <!-- The hint text that appears when the user has not typed anything -->
+        <item name="queryHint">@string/search_query_hint</item>
+    </style>
+    <style name="ActionBarThemeOverlay">
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="colorControlNormal">@color/white</item>
+        <item name="colorControlHighlight">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
+    </style>
+    <style name="ExpandedAppBar" parent="@android:style/TextAppearance">
+        <item name="android:textSize">24sp</item>
+        <item name="background">@color/white</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="CollapsedAppBar" parent="@android:style/TextAppearance">
+        <item name="background">@color/white</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+    <color name="white">#ffffff</color>
+</resources>
