@@ -2,4 +2,8 @@
     <string name="app_name">Movie</string>
     <string name="search_query_hint">Search Movie</string>
     <string name="search">Search</string>
+    <string name="retry">Retry</string>
+    <string name="image_poster">Image Poster</string>
+    <string name="movie_name">Jocker</string>
+    <string name="empty_string"> </string>
 </resources>

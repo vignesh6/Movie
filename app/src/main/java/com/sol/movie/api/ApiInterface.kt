@@ -13,5 +13,5 @@ interface ApiInterface {
         const val TYPE = "movie"
     }
     @GET("/")
-    suspend fun searchMovies(@Query("type")type:String,@Query("apikey")apikey:String,@Query("page")page:String,@Query("s")searchString:String): Response<MovieResult>
+    suspend fun searchMovies(@Query("type")type:String,@Query("apikey")apikey:String,@Query("page")page:String,@Query("s")searchString:String): MovieResult
 }

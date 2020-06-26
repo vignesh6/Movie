@@ -32,7 +32,7 @@ class MoviePageDataSource @Inject constructor(private val query:String,private v
 
     private fun fetchData(page: Int, pageSize: Int, callback: (List<Movie>) -> Unit) {
         scope.launch(getJobErrorHandler()) {
-            val response = movieRemoteDataSource.searchMovies(query,page.toString())
+        /*    val response = movieRemoteDataSource.searchMovies(query,page.toString())
             if (response.status == Result.Status.SUCCESS) {
                 val results = response.data!!.Search
                 movieDao.insertAll(results)
@@ -40,7 +40,7 @@ class MoviePageDataSource @Inject constructor(private val query:String,private v
                 callback(results)
             } else if (response.status == Result.Status.ERROR) {
                 postError(response.message!!)
-            }
+            }*/
         }
     }
     private fun getJobErrorHandler() = CoroutineExceptionHandler { _, e ->

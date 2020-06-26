@@ -1,31 +1,42 @@
 package com.sol.movie.ui.data
 
+import android.util.Log
 import androidx.lifecycle.LiveData
-import androidx.paging.LivePagedListBuilder
-import androidx.paging.PagedList
+import androidx.paging.*
+import com.sol.movie.api.ApiInterface
+import com.sol.movie.data.AppDatabase
+import com.sol.movie.data.MovieRemoteMediator
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class MovieRepository @Inject constructor(private val movieDao: MovieDao,private val movieRemoteDataSource: MovieRemoteDataSource) {
-     fun observePagedMovies(connectivityAvailable: Boolean, query: String? = null,
-                         coroutineScope: CoroutineScope
-    ) =
-        if (connectivityAvailable) observeRemotePagedMovies(query, coroutineScope)
-        else observeLocalPagedMovies(query)
+class MovieRepository @Inject constructor(private val database: AppDatabase,private val apiService: ApiInterface) {
+    /**
+     * Search repositories whose names match the query, exposed as a stream of data that will emit
+     * every time we get more data from the network.
+     */
+    fun getSearchResultStream(query: String): Flow<PagingData<Movie>> {
+        Log.d("Movie Repository", "New query: $query")
 
-    private fun observeLocalPagedMovies(query: String?): LiveData<PagedList<Movie>> {
-        val dataSourceFactory =
-            if (query == null) movieDao.getPagedMovies()
-            else movieDao.getPagedMovieByTittle(query)
+        // appending '%' so we can allow other characters to be before and after the query string
+        val dbQuery = "%${query.replace(' ', '%')}%"
+        val pagingSourceFactory = { database.movieDao().getPagedMovieByTittle(dbQuery) }
 
-        return LivePagedListBuilder(dataSourceFactory,
-            MoviePageDataSourceFactory.pagedListConfig()).build()
+        return Pager(
+            config = PagingConfig(pageSize = NETWORK_PAGE_SIZE),
+            remoteMediator = MovieRemoteMediator(
+                query,
+                apiService,
+                database
+            ),
+            pagingSourceFactory = pagingSourceFactory
+        ).flow
     }
-
-    private fun observeRemotePagedMovies(query: String?, coroutineScope: CoroutineScope): LiveData<PagedList<Movie>> {
-        val dataSourceFactory = MoviePageDataSourceFactory(query!!, movieRemoteDataSource,
-            movieDao, coroutineScope)
-        return LivePagedListBuilder(dataSourceFactory,
-            MoviePageDataSourceFactory.pagedListConfig()).build()
+    fun getOfflineData(query: String): PagingSource<Int,Movie> {
+        val dbQuery = "%${query.replace(' ', '%')}%"
+      return database.movieDao().getPagedMovieByTittle(dbQuery)
+    }
+    companion object {
+        private const val NETWORK_PAGE_SIZE = 10
     }
 }

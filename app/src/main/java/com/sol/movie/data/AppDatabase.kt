@@ -12,13 +12,13 @@ import com.sol.movie.ui.data.Movie
  * The Room database for this app
  */
 @Database(
-    entities = [Movie::class],
+    entities = [Movie::class,RemoteKeys::class],
     version = 1, exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
 
    abstract fun movieDao(): MovieDao
-
+    abstract fun remoteKeysDao(): RemoteKeysDao
     companion object {
 
         // For Singleton instantiation
