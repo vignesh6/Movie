@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.chip.Chip xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:minWidth="@dimen/chip_min_width"
+    android:textColor="@color/white"
+    android:textStyle="bold"
+    android:layout_marginStart="@dimen/margin_3dp"
+    android:layout_marginEnd="@dimen/zero_dp"
+    app:chipBackgroundColor="@color/colorPrimary"
+    app:chipCornerRadius="@dimen/margin_3dp"
+    app:chipStrokeColor="@color/colorPrimary"
+    app:chipStrokeWidth="@dimen/margin_1dp" />

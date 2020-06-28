@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.sol.movie.module.detail.ui.DetailViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/txtTittle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_normal"
+            android:singleLine="false"
+            android:text="@{viewModel.title??@string/empty_string}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/tittle_text_size_large"
+            android:textStyle="bold"
+            android:visibility="@{viewModel.title!=null ? View.VISIBLE : View.GONE}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imgPoster"
+            android:layout_width="@dimen/image_width_detail"
+            android:layout_height="@dimen/image_height_detail"
+            android:layout_margin="@dimen/margin_normal"
+            android:contentDescription="@string/image_poster"
+            android:scaleType="fitXY"
+            android:src="@drawable/movie_poster"
+            android:visibility="@{viewModel.posterImage!=null ? View.VISIBLE : View.GONE}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtTittle"
+            app:setPosterImage="@{viewModel.posterImage??@string/empty_string}" />
+
+        <TextView
+            android:id="@+id/txtYear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:layout_marginTop="@dimen/margin_20"
+            android:layout_marginBottom="@dimen/margin_normal"
+            android:drawableStart="@drawable/ic_year_15"
+            android:drawablePadding="@dimen/margin_3dp"
+            android:text="@{viewModel.year??@string/empty_string}"
+            android:textColor="@color/dark_grey"
+            android:visibility="@{viewModel.year!=null ? View.VISIBLE : View.GONE}"
+            app:layout_constraintStart_toEndOf="@id/imgPoster"
+            app:layout_constraintTop_toBottomOf="@id/txtTittle" />
+
+        <TextView
+            android:id="@+id/txtRated"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_normal"
+            android:drawableStart="@drawable/ic_baseline_star_9"
+            android:drawablePadding="@dimen/margin_3dp"
+            android:text="@{viewModel.rating}"
+            android:textColor="@color/dark_grey"
+            android:visibility="@{viewModel.rating!=null ? View.VISIBLE : View.GONE}"
+            app:layout_constraintStart_toEndOf="@id/imgPoster"
+            app:layout_constraintTop_toBottomOf="@+id/txtYear" />
+
+        <TextView
+            android:id="@+id/txtReleased"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_normal"
+            android:drawableStart="@drawable/ic_date_15"
+            android:drawablePadding="@dimen/margin_3dp"
+            android:text="@{viewModel.released??@string/empty_string}"
+            android:textColor="@color/dark_grey"
+            android:visibility="@{viewModel.released!=null ? View.VISIBLE : View.GONE}"
+            app:layout_constraintStart_toEndOf="@id/imgPoster"
+            app:layout_constraintTop_toBottomOf="@id/txtRated" />
+
+        <TextView
+            android:id="@+id/txtLanguage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_normal"
+            android:text="@string/language"
+            android:textColor="@color/black"
+            android:textSize="@dimen/tittle_text_size"
+            android:textStyle="bold"
+            android:visibility="@{viewModel.language!=null ? View.VISIBLE : View.GONE}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imgPoster" />
+
+        <TextView
+            android:id="@+id/txtLanguageVal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_normal"
+            android:text="@{viewModel.language??@string/empty_string}"
+            android:textColor="@color/dark_grey"
+            android:visibility="@{viewModel.language!=null ? View.VISIBLE : View.GONE}"
+            app:layout_constraintStart_toEndOf="@id/txtLanguage"
+            app:layout_constraintTop_toBottomOf="@id/imgPoster" />
+
+        <TextView
+            android:id="@+id/txtGenre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:layout_marginTop="@dimen/margin_small"
+            android:text="@string/genre"
+            android:textColor="@color/black"
+            android:textSize="@dimen/tittle_text_size"
+            android:textStyle="bold"
+            android:visibility="@{viewModel.genre!=null ? View.VISIBLE : View.GONE}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtLanguage" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupGenre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_25"
+            android:layout_marginTop="@dimen/margin_tiny"
+            android:layout_marginEnd="@dimen/margin_normal"
+            android:visibility="@{viewModel.genre!=null ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtGenre"
+            app:setGenre="@{viewModel.genre??@string/empty_string}" />
+
+        <TextView
+            android:id="@+id/txtPlot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_25"
+            android:layout_marginEnd="@dimen/margin_normal"
+            android:paddingStart="@dimen/zero_dp"
+            android:paddingEnd="@dimen/margin_normal"
+            android:text="@{viewModel.plot??@string/empty_string}"
+            android:textColor="@color/dark_grey"
+            android:visibility="@{viewModel.plot!=null ? View.VISIBLE : View.GONE}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/chipGroupGenre" />
+        <Button
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/retry_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/retry"
+            android:visibility="gone" />
+        <TextView
+            android:visibility="gone"
+            android:text="@string/check_internet"
+            android:paddingTop="@dimen/margin_tiny"
+            app:layout_constraintTop_toBottomOf="@id/retry_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/txtNoInternet"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -3,19 +3,32 @@
     <dimen name="app_bar_height">400dp</dimen>
 
     <dimen name="margin_normal">16dp</dimen>
+    <dimen name="margin_20">20dp</dimen>
+    <dimen name="margin_25">20dp</dimen>
+    <dimen name="margin_30">20dp</dimen>
+
     <dimen name="margin_small">8dp</dimen>
     <dimen name="margin_tiny">6dp</dimen>
+    <dimen name="margin_3dp">3dp</dimen>
     <dimen name="zero_dp">0dp</dimen>
     <dimen name="margin_text">12dp</dimen>
     <dimen name="margin_end">12dp</dimen>
     <dimen name="margin_start">6dp</dimen>
     <dimen name="margin_top">6dp</dimen>
+    <dimen name="margin_top_recycler_view">60dp</dimen>
     <dimen name="image_width">60dp</dimen>
     <dimen name="image_height">60dp</dimen>
+    <dimen name="image_height_detail">150dp</dimen>
+    <dimen name="image_width_detail">100dp</dimen>
+    <dimen name="padding_end">20dp</dimen>
+    <dimen name="chip_min_width">30dp</dimen>
+
     <dimen name="row_item_margin_vertical">12dp</dimen>
     <dimen name="error_text_size">24sp</dimen>
     <dimen name="tittle_text_size">14sp</dimen>
+    <dimen name="tittle_text_size_large">18sp</dimen>
     <dimen name="one_dp">1dp</dimen>
+    <dimen name="margin_1dp">1dp</dimen>
 
 
 </resources>

@@ -1,9 +1,17 @@
 <resources>
-    <string name="app_name">Movie</string>
+    <string name="app_name">OMDb</string>
     <string name="search_query_hint">Search Movie</string>
+    <string name="search_hint">Search %1s</string>
     <string name="search">Search</string>
     <string name="retry">Retry</string>
     <string name="image_poster">Image Poster</string>
+
+    <string name="movie">movie</string>
     <string name="movie_name">Jocker</string>
     <string name="empty_string"> </string>
+    <string name="large_string">asfjkh aksfjsjdf nbsdjkjas jksbgjksj kjsjgbs skjgjks  asfbkjbf qbwefewfb jbwefbewkbf bsehgbhs  sbehkbskb sbkbskgb</string>
+    <string name="chooseCategory">Choose Category</string>
+    <string name="genre">Genre</string>
+    <string name="language">Language</string>
+    <string name="check_internet">Check your internet connection and Try Again!</string>
 </resources>

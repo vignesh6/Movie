@@ -1,7 +1,8 @@
 package com.sol.movie.di
 
 
-import com.sol.movie.ui.search.SearchMovieFragment
+import com.sol.movie.module.detail.ui.DetailFragment
+import com.sol.movie.module.search.ui.SearchMovieFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -9,4 +10,7 @@ import dagger.android.ContributesAndroidInjector
 abstract class FragmentBuilderModule {
     @ContributesAndroidInjector
     abstract fun contributeSearchMovieFragment(): SearchMovieFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeDetailFragment(): DetailFragment
 }

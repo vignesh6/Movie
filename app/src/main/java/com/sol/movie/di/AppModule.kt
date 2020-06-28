@@ -3,12 +3,13 @@ package com.sol.movie.di
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.lifecycle.SavedStateHandle
+import com.android.example.github.util.LiveDataCallAdapterFactory
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.google.gson.Gson
 import com.sol.movie.BuildConfig
 import com.sol.movie.api.ApiInterface
 import com.sol.movie.data.AppDatabase
-import com.sol.movie.ui.data.MovieRemoteDataSource
 import com.sol.movie.util.AppConstant
 
 import dagger.Module
@@ -20,7 +21,8 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Named
+import java.util.concurrent.Executor
+import java.util.concurrent.Executors
 import javax.inject.Singleton
 
 @Module(includes = [ViewModelModule::class])
@@ -37,6 +39,11 @@ class AppModule {
     fun provideStethoIntercepor(): StethoInterceptor {
         return StethoInterceptor()
     }
+
+    @Provides
+    @Singleton
+    fun provideSavedStateHandle():SavedStateHandle = SavedStateHandle()
+
     @Provides
     @Singleton
     fun provideSharedPreference(context: Context): SharedPreferences {
@@ -49,10 +56,6 @@ class AppModule {
         converterFactory: GsonConverterFactory
     ) = provideService(okhttpClient, converterFactory, ApiInterface::class.java)
 
-   /* @Provides
-    @Singleton
-    fun provideFactsRemoteDataSource(apiInterface: ApiInterface) =
-        FactsRemoteDataSource(apiInterface)*/
 
     @Singleton
     @Provides
@@ -61,10 +64,11 @@ class AppModule {
     @Singleton
     @Provides
     fun provideMovieDao(db: AppDatabase) = db.movieDao()
+
     @Singleton
     @Provides
-    fun provideMovieRemoteDataSource(service: ApiInterface)
-            = MovieRemoteDataSource(service)
+    fun provideDetailDao(db:AppDatabase) = db.detaiDao()
+
     @Provides
     @Singleton
     fun provideOkHttpClient(
@@ -93,6 +97,11 @@ class AppModule {
 
     @Provides
     @Singleton
+    fun provideExecutor():Executor = Executors.newSingleThreadExecutor()
+
+
+    @Provides
+    @Singleton
     fun provideGsonConverterFactory(gson: Gson): GsonConverterFactory =
         GsonConverterFactory.create(gson)
 
@@ -112,6 +121,7 @@ class AppModule {
             .baseUrl(ApiInterface.API_END_POINT_URL)
             .client(okhttpClient)
             .addConverterFactory(converterFactory)
+            .addCallAdapterFactory(LiveDataCallAdapterFactory())
             .build()
     }
 

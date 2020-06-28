@@ -6,8 +6,26 @@
     android:id="@+id/nav_main">
     <fragment
         android:id="@+id/movie_search_fragment"
-        android:name="com.sol.movie.ui.search.SearchMovieFragment"
+        android:name="com.sol.movie.module.search.ui.SearchMovieFragment"
         tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_to_detail_fragment"
+            app:destination="@id/detail_fragment"
+            app:popUpTo="@id/movie_search_fragment"
+            app:popUpToInclusive="false"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/detail_fragment"
+        android:name="com.sol.movie.module.detail.ui.DetailFragment"
+        tools:layout="@layout/fragment_detail">
+        <argument
+            android:name="Tittle"
+            app:argType="string"
+            app:nullable="false"/>
     </fragment>
 
 </navigation>

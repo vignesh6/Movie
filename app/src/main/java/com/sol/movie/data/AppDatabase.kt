@@ -5,20 +5,22 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.sol.movie.ui.data.MovieDao
-import com.sol.movie.ui.data.Movie
+import com.sol.movie.module.detail.data.MovieDetail
+import com.sol.movie.module.detail.data.MovieDetailDao
+import com.sol.movie.module.search.data.MovieDao
+import com.sol.movie.module.search.data.Movie
 
 /**
  * The Room database for this app
  */
 @Database(
-    entities = [Movie::class,RemoteKeys::class],
+    entities = [Movie::class,MovieDetail::class],
     version = 1, exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
 
    abstract fun movieDao(): MovieDao
-    abstract fun remoteKeysDao(): RemoteKeysDao
+   abstract fun detaiDao(): MovieDetailDao
     companion object {
 
         // For Singleton instantiation

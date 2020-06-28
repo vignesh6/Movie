@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.sol.movie.databinding.ActivityMainBinding
 import dagger.android.AndroidInjector
@@ -32,6 +33,8 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector {
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
     }
-
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
     override fun androidInjector(): AndroidInjector<Any> = dispatchingAndroidInjector
 }

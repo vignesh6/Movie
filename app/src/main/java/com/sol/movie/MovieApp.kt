@@ -8,6 +8,7 @@ import com.sol.movie.di.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
+import fr.dasilvacampos.network.monitoring.ConnectivityStateHolder.registerConnectivityBroadcaster
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -24,6 +25,7 @@ class MovieApp : Application(), HasAndroidInjector {
         AppInjector.init(this)
          if (BuildConfig.DEBUG) Timber.plant(Timber.DebugTree())
         Stetho.initializeWithDefaults(this)
+        registerConnectivityBroadcaster()
     }
 
     override fun androidInjector(): AndroidInjector<Any> = dispatchingAndroidInjector

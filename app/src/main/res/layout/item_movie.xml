@@ -11,12 +11,13 @@
 
         <variable
             name="movie"
-            type="com.sol.movie.ui.data.Movie" />
+            type="com.sol.movie.module.search.data.Movie" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{clickListener}">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -27,27 +28,36 @@
                 android:id="@+id/imagePoster"
                 android:layout_width="@dimen/image_width"
                 android:layout_height="@dimen/zero_dp"
+                android:adjustViewBounds="true"
                 android:contentDescription="@string/image_poster"
                 android:scaleType="fitXY"
-                android:adjustViewBounds="true"
-                app:setPosterImage = "@{movie.poster??@string/empty_string}"
                 app:layout_constraintBottom_toTopOf="@id/barrier"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:setPosterImage="@{movie.poster??@string/empty_string}"
                 tools:src="@tools:sample/avatars" />
 
-            <com.google.android.material.textview.MaterialTextView
+            <TextView
                 android:id="@+id/txtTittle"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_tiny"
+                android:layout_marginEnd="15dp"
+                android:gravity="start"
+                android:paddingStart="@dimen/zero_dp"
+                android:paddingEnd="@dimen/margin_end"
+                android:singleLine="false"
+                android:text="@{movie.title??@string/empty_string}"
+                android:textAlignment="gravity"
                 android:textColor="@color/black"
                 android:textSize="@dimen/tittle_text_size"
                 android:textStyle="bold"
-                android:text="@{movie.title??@string/empty_string}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@id/imagePoster"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="@string/app_name" />
+                tools:Text="bafbsdhb befkewkjfb jksefjkbjkf kj  webfbwekfbkwef"
+                tools:text="@string/large_string" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/txtYear"
@@ -55,8 +65,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_tiny"
                 android:layout_marginTop="@dimen/margin_tiny"
-                android:textColor="@color/black"
                 android:text="@{movie.year}"
+                android:textColor="@color/black"
                 app:layout_constraintStart_toEndOf="@id/imagePoster"
                 app:layout_constraintTop_toBottomOf="@id/txtTittle"
                 tools:text="@string/movie_name" />
@@ -67,8 +77,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_tiny"
                 android:layout_marginTop="@dimen/margin_tiny"
-                android:textColor="@color/black"
                 android:text="@{movie.type}"
+                android:textColor="@color/black"
                 app:layout_constraintStart_toEndOf="@id/imagePoster"
                 app:layout_constraintTop_toBottomOf="@id/txtYear"
                 tools:text="@string/movie_name" />
@@ -79,8 +89,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_tiny"
                 android:layout_marginTop="@dimen/margin_tiny"
-                android:textColor="@color/black"
                 android:text="@{movie.imdbID}"
+                android:textColor="@color/black"
                 app:layout_constraintStart_toEndOf="@id/imagePoster"
                 app:layout_constraintTop_toBottomOf="@id/txtType"
                 tools:text="@string/movie_name" />
